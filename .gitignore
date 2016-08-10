@@ -2,4 +2,4 @@
 /documents/*
 db.*
 *.csv
-
+*xml
