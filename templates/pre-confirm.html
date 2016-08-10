@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Step: preprocessing</title>
+</head>
+<body>
+<h1>Second Step</h1>
+{% if file_id %}
+
+            <p> The File {{ features}} has been selected<p>
+            {% for item in features %}
+            <p> The feature {{ item }} has been selected<p>
+            {% endfor %}
+            <p> The target {{ target }} has been selected<p>
+
+{% else %}
+    <p>No documents.</p>
+{% endif %}
+
+{% if debug_msg %}
+{{ debug_msg  }}
+    ### put hidden field id here
+{% endif %}
+</body>
+</html>

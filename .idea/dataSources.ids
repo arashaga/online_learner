@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sqlite (Xerial) - identifier.sqlite" uuid="043cd1d6-6b81-4e13-b790-4bf7f49afcd6">
+    <database-info product="SQLite" version="3.6.23.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="pure"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <database-model serializer="dbm" rdbms="SQLITE" format-version="2.6">
+      <schema id="1">
+        <visible>1</visible>
+      </schema>
+    </database-model>
+  </data-source>
+</component>

@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<h1>Second Step</h1>
+{% if filename %}
+
+            <p> The File {{ filename}} has been selected
+            let's go do something with it!</p>
+                <p> The shape is {{ shape }} </p>
+            {% autoescape off %}
+                {{ data_preview}}
+            {% endautoescape %}
+
+{% else %}
+    <p>No documents.</p>
+{% endif %}
+		<form action="/{{ file_id }}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ form.non_field_errors }}</p>
+            <input type="hidden" name="field_id" value="{{file_id}}">
+
+            <p><table>{{ feature_form.as_table}}</table> </p>
+            <p><table>{{ target_form.as_table}}</table> </p>
+			<p><input type="submit" value="Next" /></p>
+
+		</form>
+{% if debug_msg %}
+{{ debug_msg  }}
+    ### put hidden field id here
+{% endif %}
+{% endblock %}
