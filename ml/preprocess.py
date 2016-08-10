@@ -11,8 +11,8 @@ from sklearn.preprocessing import Imputer, LabelEncoder
 ##TODO: 5-process data
 ##TODO:     5.1-preview
 ##TODO:     5.2-drop na or impute header.....
-
-def preview_data(file_name):
+##TODO      5.3 modify preview data to be able to import files with a different delimiters
+def import_data(file_name):
     df = pd.read_csv(file_name)
     return df
 

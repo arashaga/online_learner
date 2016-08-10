@@ -15,9 +15,16 @@
             <p> The target {{ target }} has been selected<p>
 
 {% else %}
+
     <p>No documents.</p>
 {% endif %}
+    {% if coefs %}
+        {% for coef in coefs %}
+            <p>{{ coef }}</p>
+        {% endfor %}
 
+    {% endif %}
+ {{ arash }}
 {% if debug_msg %}
 {{ debug_msg  }}
     ### put hidden field id here

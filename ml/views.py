@@ -10,7 +10,7 @@ import zipfile
 
 from ml.models import Document
 from ml.forms import DocumentForm, FeatureSelectForm, TargetSelectForm
-from ml.preprocess import preview_data
+from ml.preprocess import import_data
 import os
 
 
@@ -23,7 +23,7 @@ def home(request):
         if form.is_valid():
             newdoc = Document(docfile = request.FILES['docfile'])
 
-            debug_msg = newdoc.docfile
+            debug_msg = request.POST['headers']
             newdoc.save()
 
             feature_form = FeatureSelectForm(request.POST)
@@ -45,7 +45,7 @@ def home(request):
             # finally:
             #     zf.close()
             #####################################################
-            df = preview_data(newdoc.docfile) # i sue this approach to avoid hitting database
+            df = import_data(newdoc.docfile) # i sue this approach to avoid hitting database
             html = df.to_html(max_rows=3)
             return render_to_response(
                 'preprocessing.html',
@@ -105,12 +105,23 @@ def preprocessing(request,file_id):
 def train_using_regression(request, file_id):
     file_id = get_object_or_404(Document, pk=file_id)
 
-    filename = Document.objects.filter(id=file_id)
-    df = preview_data(filename)
+    filename = file_id.docfile
+    df = import_data(filename)
     target = request.POST['target']
     features = request.POST.getlist('choices')
     from sklearn.cross_validation import train_test_split
 
     X, y = df.iloc[:, 1:].values, df.iloc[:, 0].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-    ## add normalization here
+
+    ## add normalization here page 111
+
+    from sklearn.linear_model import LinearRegression
+    slr = LinearRegression()
+    slr.fit(X_train, y_train)
+    return render(request, 'pre-confirm.html', {  # 'filename': filename,
+        'file_id': file_id,
+        'target': target,
+        'features': features,
+        'coefs' : slr.coef_,
+        'arash' : "Arash",})

@@ -28,6 +28,10 @@
 			<p>
 				{{ form.docfile.errors }}
 				{{ form.docfile }}
+                <p>Does you data have header?(optional)</p>
+            <p>If not please enter it below comma delimited</p>
+            {{ form.headers }}
+
 			</p>
 			<p><input type="submit" value="Upload" /></p>
 		</form>
